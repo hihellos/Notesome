@@ -1,14 +1,19 @@
 {
-  "name": "note-taker",
+  "name": "js",
   "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
+  "description": "Make awesome notes with Notesome",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hihellos/Notesome.git"
+  },
+  "author": "Andie",
   "license": "ISC",
-  "dependencies": {
-    "express": "^4.16.4"
-  }
+  "bugs": {
+    "url": "https://github.com/hihellos/Notesome/issues"
+  },
+  "homepage": "https://github.com/hihellos/Notesome#readme"
 }
