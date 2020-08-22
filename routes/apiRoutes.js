@@ -21,6 +21,7 @@ module.exports = function(app) {
     app.post("/api/notes", function(req, res){
         // POST /api/notes - Should receive a new note to save on the request body, add it to the db.json file, and then return the new note to the client.
         let newNote = req.body;
+        newNote.id = Math.floor(Math.random() * 10000);
         noteArray.push(newNote);
         res.json(noteArray);
         console.log("saving note");
