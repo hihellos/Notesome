@@ -69,10 +69,12 @@ const handleNoteDelete = function (event) {
 
   const note = $(this).parent(".list-group-item").data();
 
+  // if id of note matches an id in the array, set active note content to empty
   if (activeNote.id === note.id) {
     activeNote = {};
   }
 
+  // call delete note function for note with matching id and reload getAndRenderNotes(), renderActiveNote()
   deleteNote(note.id).then(() => {
     getAndRenderNotes();
     renderActiveNote();
