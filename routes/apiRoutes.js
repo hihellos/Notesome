@@ -7,12 +7,12 @@ module.exports = function(app) {
 
     // Read db.json using fs.readFileSync and JSON.parse()
     let dataStr = fs.readFileSync("./db/db.json", "utf8");
-    let noteArray = JSON.parse(dataStr);
+    // let noteArray = JSON.parse(dataStr);
 
     app.get("/api/notes", function(req, res){
         // GET /api/notes - Should read the db.json file and return all saved notes as JSON.
         console.log("getting note");
-        res.json(noteArray);
+        res.json(noteData);
     });
 
     app.post("/api/notes", function(req, res){
@@ -20,12 +20,12 @@ module.exports = function(app) {
         let newNote = req.body;
         newNote.id = Math.floor(Math.random() * 10000);
 
-        noteArray.push(newNote);
-        res.json(noteArray);
+        noteData.push(newNote);
+        res.json(noteData);
 
-        fs.writeFile("./db/db.json", JSON.stringify(noteArray), function (err) {
+        fs.writeFile("./db/db.json", JSON.stringify(noteData), function (err) {
             if (err) throw err;
-            res.end(noteArray);
+            res.end(noteData);
             console.log("sucessful write");
         });    
 
@@ -40,15 +40,15 @@ module.exports = function(app) {
         let id = req.params.id;
 
         // filter through array and rewrite without the note matching selected id
-        const newNoteArray = notes.filter(notes => notes.id != id);
-        console.log("new new: ", newNoteArray);
+        let deleteNote = notes.filter(notes => notes.id != id);
 
-        fs.writeFile("./db/db.json", JSON.stringify(newNoteArray), function (err) {
+        fs.writeFile("./db/db.json", JSON.stringify(deleteNote), function (err) {
             if (err) throw err;
-            res.json(newNoteArray);
             console.log("sucessful write new");
         });    
         
+        noteData = deleteNote;
+        res.json(deleteNote);
         console.log("deleting note");
     });
 }
